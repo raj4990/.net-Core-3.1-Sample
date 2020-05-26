@@ -1,0 +1,14 @@
+﻿@model int
+
+@{
+    Layout = "_Layout2";
+    ViewBag.Title = "404 Error";
+}
+
+
+
+            <h1>ERROR <span class="counter"> 404</span></h1>
+            <p>Sorry, Employee with ID = @Model has not been found.<br/> Try checking the URL for the error, then hit the refresh button on your browser or try found something else in our app.</p>
+            <a asp-action="Index" asp-controller="Employee">Dashboard</a>
+            <a href="#">Report Problem</a>
+       

@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "tempusdominus-bootstrap-4@5.1.2",
+      "destination": "wwwroot/lib/tempusdominus-bootstrap-4/"
+    },
+    {
+      "library": "moment.js@2.24.0",
+      "destination": "wwwroot/lib/moment.js/"
+    }
+  ]
+}

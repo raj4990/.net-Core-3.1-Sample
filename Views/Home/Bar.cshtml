@@ -1,0 +1,378 @@
+﻿@model IEnumerable<Employee>
+@{
+    var XLabels = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.Name).ToList());
+    var YValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.Id).ToList());
+    ViewData["Title"] = "Bar Chart";
+}
+
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title">Chart-js</h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Charts</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> Chart-js </li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="charts-single-pro responsive-mg-b-30">
+                            <div class="alert-title">
+                                <h2>Bar Chart</h2>
+                            </div>
+                            <div>
+                                <canvas id="chart" style="width:100%; height:500px"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="charts-single-pro responsive-mg-b-30">
+                            <div class="alert-title">
+                                <h2>Pie Chart</h2>
+                            </div>
+                            <div>
+                                <canvas id="chart2" style="width:100%; height:500px"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="charts-single-pro responsive-mg-b-30">
+                            <div class="alert-title">
+                                <h2>Line Chart</h2>
+                            </div>
+                            <div>
+                                <canvas id="chart3" style="width:100%; height:500px"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="charts-single-pro responsive-mg-b-30">
+                            <div class="alert-title">
+                                <h2>Pie Chart</h2>
+                            </div>
+                            <div>
+                                <canvas id="chart4" style="width:100%; height:500px"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>       
+    </div>
+<!-- content-wrapper ends -->
+
+<script type="text/javascript">
+
+        $(function () {
+    var chartName = "chart";
+        var ctx = document.getElementById(chartName).getContext('2d');
+        var data = {
+                labels: @Html.Raw(XLabels),
+                datasets: [{
+                    label: "Bar Chart",
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 0, 0)',
+                        'rgba(0, 255, 0)',
+                        'rgba(0, 0, 255)',
+                        'rgba(192, 192, 192)',
+                        'rgba(255, 255, 0)',
+                        'rgba(255, 0, 255)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 0, 0)',
+                        'rgba(0, 255, 0)',
+                        'rgba(0, 0, 255)',
+                        'rgba(192, 192, 192)',
+                        'rgba(255, 255, 0)',
+                        'rgba(255, 0, 255)'
+                    ],
+                    borderWidth: 1,
+                    data: @Html.Raw(YValues)
+    }]
+            };
+
+var options = {
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            beginAtZero: true
+                        },
+                        gridLines: {
+                            display: true,
+                            color: "rgba(255,99,164,0.2)"
+                        }
+}],
+                    xAxes: [{
+                        ticks: {
+                            min: 0,
+                            beginAtZero: true
+                        },
+                        gridLines: {
+                            display: false
+                        }
+                    }]
+                }
+            };
+
+       var myChart = new  Chart(ctx, {
+                options: options,
+                data: data,
+                type:'bar'
+
+            });
+        });
+
+      $(function () {
+    var chartName = "chart2";
+        var ctx = document.getElementById(chartName).getContext('2d');
+        var data = {
+                labels: @Html.Raw(XLabels),
+                datasets: [{
+                    label: "Pie Chart",
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 0, 0)',
+                        'rgba(0, 255, 0)',
+                        'rgba(0, 0, 255)',
+                        'rgba(192, 192, 192)',
+                        'rgba(255, 255, 0)',
+                        'rgba(255, 0, 255)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 0, 0)',
+                        'rgba(0, 255, 0)',
+                        'rgba(0, 0, 255)',
+                        'rgba(192, 192, 192)',
+                        'rgba(255, 255, 0)',
+                        'rgba(255, 0, 255)'
+                    ],
+                    borderWidth: 1,
+                    data: @Html.Raw(YValues)
+    }]
+            };
+
+var options = {
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            beginAtZero: true
+                        },
+                        gridLines: {
+                            display: true,
+                            color: "rgba(255,99,164,0.2)"
+                        }
+}],
+                    xAxes: [{
+                        ticks: {
+                            min: 0,
+                            beginAtZero: true
+                        },
+                        gridLines: {
+                            display: false
+                        }
+                    }]
+                }
+            };
+
+       var myChart = new  Chart(ctx, {
+                options: options,
+                data: data,
+                type:'pie'
+
+            });
+      });
+
+     $(function () {
+    var chartName = "chart3";
+        var ctx = document.getElementById(chartName).getContext('2d');
+        var data = {
+                labels: @Html.Raw(XLabels),
+                datasets: [{
+                    label: "Countries Chart",
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 0, 0)',
+                        'rgba(0, 255, 0)',
+                        'rgba(0, 0, 255)',
+                        'rgba(192, 192, 192)',
+                        'rgba(255, 255, 0)',
+                        'rgba(255, 0, 255)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 0, 0)',
+                        'rgba(0, 255, 0)',
+                        'rgba(0, 0, 255)',
+                        'rgba(192, 192, 192)',
+                        'rgba(255, 255, 0)',
+                        'rgba(255, 0, 255)'
+                    ],
+                    borderWidth: 1,
+                    data: @Html.Raw(YValues)
+    }]
+            };
+
+var options = {
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            beginAtZero: true
+                        },
+                        gridLines: {
+                            display: true,
+                            color: "rgba(255,99,164,0.2)"
+                        }
+}],
+                    xAxes: [{
+                        ticks: {
+                            min: 0,
+                            beginAtZero: true
+                        },
+                        gridLines: {
+                            display: false
+                        }
+                    }]
+                }
+            };
+
+       var myChart = new  Chart(ctx, {
+                options: options,
+                data: data,
+                type:'radar'
+
+            });
+     });
+
+
+     $(function () {
+    var chartName = "chart4";
+        var ctx = document.getElementById(chartName).getContext('2d');
+        var data = {
+                labels: @Html.Raw(XLabels),
+                datasets: [{
+                    label: "Pie Chart",
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 0, 0)',
+                        'rgba(0, 255, 0)',
+                        'rgba(0, 0, 255)',
+                        'rgba(192, 192, 192)',
+                        'rgba(255, 255, 0)',
+                        'rgba(255, 0, 255)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 0, 0)',
+                        'rgba(0, 255, 0)',
+                        'rgba(0, 0, 255)',
+                        'rgba(192, 192, 192)',
+                        'rgba(255, 255, 0)',
+                        'rgba(255, 0, 255)'
+                    ],
+                    borderWidth: 1,
+                    data: @Html.Raw(YValues)
+    }]
+            };
+
+var options = {
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            beginAtZero: true
+                        },
+                        gridLines: {
+                            display: true,
+                            color: "rgba(255,99,164,0.2)"
+                        }
+}],
+                    xAxes: [{
+                        ticks: {
+                            min: 0,
+                            beginAtZero: true
+                        },
+                        gridLines: {
+                            display: false
+                        }
+                    }]
+                }
+            };
+
+       var myChart = new  Chart(ctx, {
+                options: options,
+                data: data,
+                type:'doughnut'
+
+            });
+      });
+
+</script>

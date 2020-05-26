@@ -1,0 +1,41 @@
+﻿@model CreateRoleViewModel
+@{
+    ViewData["Title"] = "CreateRole";
+}
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title"> Create Role</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Employee" asp-action="Index">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> Create Role</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form enctype="multipart/form-data" asp-controller="Account" asp-action="CreateRole" method="post">
+                        <div class="form-group row">
+                            <label asp-for="RoleName" class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <input asp-for="RoleName" type="text" placeholder="RoleName" title="Please Enter  Role Name" required="" class="form-control">
+                                <span asp-validation-for="RoleName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <button type="submit" class="btn btn-primary mr-2"> Create </button>
+                                <a asp-action="ListRoles" asp-controller="Administration" class="btn btn-dribbble"> Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

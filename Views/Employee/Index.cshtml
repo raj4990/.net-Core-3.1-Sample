@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Employee>
+
+@{
+    ViewBag.Title = "Employee List";
+}
+
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">Employee List</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Employee" asp-action="Index">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> Employee List</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    @*<h4 class="card-title">Employee List</h4>*@
+                    <p class="card-description">
+                        Add New Employee <code>
+                            <a asp-controller="Employee" asp-action="Create"
+                               class="btn btn-primary m-1"><i class="mdi mdi-plus-circle-outline"></i></a>
+                        </code>
+                    </p>
+                    <div class="table-responsive">
+                        <table id="myTable" class="table table-striped table-bordered table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Department</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var employee in Model)
+                                {
+                                    <tr>
+                                        <td>@employee.Id</td>
+                                        <td>@employee.Name</td>
+                                        <td>@employee.Email</td>
+                                        <td>@employee.Department</td>
+                                        <td>
+                                            <a asp-controller="Employee" asp-action="Details" asp-route-id="@employee.Id"
+                                               class="btn btn-outline-success btn-sm m-1"><i class="mdi mdi-file-check btn-icon-prepend"></i></a>
+                                            <a asp-controller="Employee" asp-action="Edit" asp-route-id="@employee.Id"
+                                               class="btn btn-outline-primary btn-sm m-1"><i class="mdi mdi-pencil btn-icon-prepend"></i></a>
+                                            <a asp-controller="Employee" asp-action="Details" asp-route-id="@employee.Id"
+                                               class="btn btn-outline-danger btn-sm m-1"><i class="mdi mdi-trash-can btn-icon-prepend"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+}
